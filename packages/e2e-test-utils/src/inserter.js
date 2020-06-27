@@ -81,6 +81,23 @@ export async function searchForPattern( searchTerm ) {
 }
 
 /**
+ * Search for reusable block in the global inserter
+ *
+ * @param {string} searchTerm The text to search the inserter for.
+ */
+export async function searchForReusableBlock( searchTerm ) {
+	await openGlobalBlockInserter();
+	// Select the reusable blocks tab.
+	const [ tab ] = await page.$x(
+		'//div[contains(@class, "block-editor-inserter__tabs")]//button[.="Reusable"]'
+	);
+	await tab.click();
+	await page.focus( INSERTER_SEARCH_SELECTOR );
+	await pressKeyWithModifier( 'primary', 'a' );
+	await page.keyboard.type( searchTerm );
+}
+
+/**
  * Opens the inserter, searches for the given term, then selects the first
  * result that appears. It then waits briefly for the block list to update.
  *
@@ -106,6 +123,21 @@ export async function insertPattern( searchTerm ) {
 		await page.$x(
 			`//div[@role = 'button']//div[contains(text(), '${ searchTerm }')]`
 		)
+	 )[ 0 ];
+	await insertButton.click();
+}
+
+/**
+ * Opens the inserter, searches for the given reusable block, then selects the
+ * first result that appears. It then waits briefly for the block list to
+ * update.
+ *
+ * @param {string} searchTerm The text to search the inserter for.
+ */
+export async function insertReusableBlock( searchTerm ) {
+	await searchForReusableBlock( searchTerm );
+	const insertButton = (
+		await page.$x( `//button//span[contains(text(), '${ searchTerm }')]` )
 	 )[ 0 ];
 	await insertButton.click();
 }
