@@ -24,7 +24,7 @@ Users insert new blocks by clicking the plus button for the Block Inserter, typi
 
 Blocks can be duplicated within content using the menu from the block's toolbar or via keyboard shortcut.
 
-Blocks can also be made repeatable, allowing them to be shared across posts and post types and/or used multiple times in the same post. If a reusable block is edited in one place, those changes are reflected everywhere that that block is used.
+Blocks can also be made repeatable, allowing them to be shared across posts and post types and/or used multiple times in the same post. If a reusable block is edited in one place, those changes are reflected everywhere that block is used.
 
 Blocks can be limited or locked-in-place by Templates and custom code.
 
